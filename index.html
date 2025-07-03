@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            object-fit: contain;
+        }
+        
+        .payment-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .payment-details {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .payment-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #5a7bf0;
+        }
+        
+        .qris-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .qris-image {
+            max-width: 250px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .instructions {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+        }
+        
+        @media (max-width: 600px) {
+            .payment-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Payment Gateway</h1>
+            <p>Please select your preferred payment method</p>
+        </header>
+        
+        <div class="payment-methods">
+            <div class="payment-card">
+                <div class="payment-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="DANA" class="payment-icon">
+                    <h2 class="payment-title">DANA</h2>
+                </div>
+                <div class="payment-details">
+                    <p>Send payment to this DANA number:</p>
+                    <p class="payment-number">087823698836</p>
+                    <button class="copy-btn" onclick="copyToClipboard('087823698836')">Copy Number</button>
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <div class="payment-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay" class="payment-icon">
+                    <h2 class="payment-title">GoPay</h2>
+                </div>
+                <div class="payment-details">
+                    <p>Send payment to this GoPay number:</p>
+                    <p class="payment-number">089603532926</p>
+                    <button class="copy-btn" onclick="copyToClipboard('089603532926')">Copy Number</button>
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <div class="payment-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QRIS" class="payment-icon">
+                    <h2 class="payment-title">QRIS</h2>
+                </div>
+                <div class="payment-details">
+                    <p>Scan this QR code to make payment:</p>
+                    <div class="qris-container">
+                        <img src="https://e.top4top.io/p_3449fh2j01.jpg" alt="QRIS Code" class="qris-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>Payment Instructions</h2>
+            <ol>
+                <li>Select your preferred payment method above</li>
+                <li>For DANA/GoPay: Copy the number and paste in your payment app</li>
+                <li>For QRIS: Scan the QR code using your banking/mobile payment app</li>
+                <li>Make sure the payment amount is correct</li>
+                <li>After payment, please send the receipt to our customer service</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>© 2023 Payment Gateway. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Copied to clipboard: ' + text);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
